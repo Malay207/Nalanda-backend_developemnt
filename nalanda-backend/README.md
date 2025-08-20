@@ -34,7 +34,7 @@ src/
 
 ### 1️⃣ Clone repo & install dependencies
 ```bash
-git clone https://github.com/your-username/nalanda-library-backend.git
+git clone https://github.com/Malay207/Nalanda-backend_developemnt.git
 cd nalanda-library-backend
 npm install
 ```
