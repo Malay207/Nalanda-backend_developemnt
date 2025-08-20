@@ -1,0 +1,357 @@
+{
+    "info": {
+        "name": "Nalanda Library Management System",
+        "_postman_id": "c8d6f5e3-12ab-4d2f-89ef-1234567890ab",
+        "description": "Postman collection for testing REST and GraphQL APIs of Nalanda backend.",
+        "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+    },
+    "item": [
+        {
+            "name": "REST API",
+            "item": [
+                {
+                    "name": "Register User",
+                    "request": {
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n  \"name\": \"John Doe\",\n  \"email\": \"john@example.com\",\n  \"password\": \"123456\",\n  \"role\": \"Admin\"\n}"
+                        },
+                        "url": {
+                            "raw": "http://localhost:5000/api/auth/register",
+                            "protocol": "http",
+                            "host": [
+                                "localhost"
+                            ],
+                            "port": "5000",
+                            "path": [
+                                "api",
+                                "auth",
+                                "register"
+                            ]
+                        }
+                    }
+                },
+                {
+                    "name": "Login User",
+                    "request": {
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n  \"email\": \"john@example.com\",\n  \"password\": \"123456\"\n}"
+                        },
+                        "url": {
+                            "raw": "http://localhost:5000/api/auth/login",
+                            "protocol": "http",
+                            "host": [
+                                "localhost"
+                            ],
+                            "port": "5000",
+                            "path": [
+                                "api",
+                                "auth",
+                                "login"
+                            ]
+                        }
+                    }
+                },
+                {
+                    "name": "Add Book (Admin)",
+                    "request": {
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                            },
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer {{token}}"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n  \"title\": \"The Alchemist\",\n  \"author\": \"Paulo Coelho\",\n  \"isbn\": \"1234567890\",\n  \"publicationDate\": \"1988-01-01\",\n  \"genre\": \"Fiction\",\n  \"copies\": 5\n}"
+                        },
+                        "url": {
+                            "raw": "http://localhost:5000/api/books",
+                            "protocol": "http",
+                            "host": [
+                                "localhost"
+                            ],
+                            "port": "5000",
+                            "path": [
+                                "api",
+                                "books"
+                            ]
+                        }
+                    }
+                },
+                {
+                    "name": "List Books",
+                    "request": {
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer {{token}}"
+                            }
+                        ],
+                        "url": {
+                            "raw": "http://localhost:5000/api/books",
+                            "protocol": "http",
+                            "host": [
+                                "localhost"
+                            ],
+                            "port": "5000",
+                            "path": [
+                                "api",
+                                "books"
+                            ]
+                        }
+                    }
+                },
+                {
+                    "name": "Borrow Book (Member)",
+                    "request": {
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                            },
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer {{token}}"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n  \"bookId\": \"{{bookId}}\"\n}"
+                        },
+                        "url": {
+                            "raw": "http://localhost:5000/api/borrow/borrow",
+                            "protocol": "http",
+                            "host": [
+                                "localhost"
+                            ],
+                            "port": "5000",
+                            "path": [
+                                "api",
+                                "borrow",
+                                "borrow"
+                            ]
+                        }
+                    }
+                },
+                {
+                    "name": "Return Book (Member)",
+                    "request": {
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                            },
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer {{token}}"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n  \"bookId\": \"{{bookId}}\"\n}"
+                        },
+                        "url": {
+                            "raw": "http://localhost:5000/api/borrow/return",
+                            "protocol": "http",
+                            "host": [
+                                "localhost"
+                            ],
+                            "port": "5000",
+                            "path": [
+                                "api",
+                                "borrow",
+                                "return"
+                            ]
+                        }
+                    }
+                }
+            ]
+        },
+        {
+            "name": "GraphQL API",
+            "item": [
+                {
+                    "name": "Register (GraphQL)",
+                    "request": {
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n  \"query\": \"mutation { register(name: \\\"John Doe\\\", email: \\\"john@example.com\\\", password: \\\"123456\\\", role: \\\"Admin\\\") { id name email role } }\"\n}"
+                        },
+                        "url": {
+                            "raw": "http://localhost:5000/graphql",
+                            "protocol": "http",
+                            "host": [
+                                "localhost"
+                            ],
+                            "port": "5000",
+                            "path": [
+                                "graphql"
+                            ]
+                        }
+                    }
+                },
+                {
+                    "name": "Login (GraphQL)",
+                    "request": {
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n  \"query\": \"mutation { login(email: \\\"john@example.com\\\", password: \\\"123456\\\") { token user { id name role } } }\"\n}"
+                        },
+                        "url": {
+                            "raw": "http://localhost:5000/graphql",
+                            "protocol": "http",
+                            "host": [
+                                "localhost"
+                            ],
+                            "port": "5000",
+                            "path": [
+                                "graphql"
+                            ]
+                        }
+                    }
+                },
+                {
+                    "name": "Add Book (GraphQL)",
+                    "request": {
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                            },
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer {{token}}"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n  \"query\": \"mutation { addBook(title: \\\"The Alchemist\\\", author: \\\"Paulo Coelho\\\", isbn: \\\"1234567890\\\", publicationDate: \\\"1988-01-01\\\", genre: \\\"Fiction\\\", copies: 5) { id title author copies } }\"\n}"
+                        },
+                        "url": {
+                            "raw": "http://localhost:5000/graphql",
+                            "protocol": "http",
+                            "host": [
+                                "localhost"
+                            ],
+                            "port": "5000",
+                            "path": [
+                                "graphql"
+                            ]
+                        }
+                    }
+                },
+                {
+                    "name": "Borrow Book (GraphQL)",
+                    "request": {
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                            },
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer {{token}}"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n  \"query\": \"mutation { borrowBook(bookId: \\\"{{bookId}}\\\") { id book { title } borrowedAt returnedAt } }\"\n}"
+                        },
+                        "url": {
+                            "raw": "http://localhost:5000/graphql",
+                            "protocol": "http",
+                            "host": [
+                                "localhost"
+                            ],
+                            "port": "5000",
+                            "path": [
+                                "graphql"
+                            ]
+                        }
+                    }
+                },
+                {
+                    "name": "Reports (GraphQL)",
+                    "request": {
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                            },
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer {{token}}"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n  \"query\": \"{ bookAvailability { totalBooks borrowedBooks availableBooks } }\"\n}"
+                        },
+                        "url": {
+                            "raw": "http://localhost:5000/graphql",
+                            "protocol": "http",
+                            "host": [
+                                "localhost"
+                            ],
+                            "port": "5000",
+                            "path": [
+                                "graphql"
+                            ]
+                        }
+                    }
+                }
+            ]
+        }
+    ],
+    "variable": [
+        {
+            "key": "token",
+            "value": ""
+        },
+        {
+            "key": "bookId",
+            "value": ""
+        }
+    ]
+}
